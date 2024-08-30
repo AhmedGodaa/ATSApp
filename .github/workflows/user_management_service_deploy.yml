@@ -1,0 +1,36 @@
+name: Push User Management Service Docker image to Docker Hub
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Image Version
+        default: v1.0.0
+        required: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push User Management Docker image
+        run: |
+          cd UserManagementService
+          chmod +x gradlew
+          ./gradlew build     
+          docker build -t ahmedgodaa/ats-user-management-service:${{ github.event.inputs.version }} .
+          docker push ahmedgodaa/ats-user-management-service:${{ github.event.inputs.version }}

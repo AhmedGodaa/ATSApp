@@ -1,0 +1,17 @@
+export * from './adminController.service';
+import { AdminControllerService } from './adminController.service';
+export * from './authenticationController.service';
+import { AuthenticationControllerService } from './authenticationController.service';
+export * from './emailController.service';
+import { EmailControllerService } from './emailController.service';
+export * from './emailVerificationController.service';
+import { EmailVerificationControllerService } from './emailVerificationController.service';
+export * from './passwordResetController.service';
+import { PasswordResetControllerService } from './passwordResetController.service';
+export * from './userController.service';
+import { UserControllerService } from './userController.service';
+export * from './workspaceController.service';
+import { WorkspaceControllerService } from './workspaceController.service';
+export * from './workspacesController.service';
+import { WorkspacesControllerService } from './workspacesController.service';
+export const APIS = [AdminControllerService, AuthenticationControllerService, EmailControllerService, EmailVerificationControllerService, PasswordResetControllerService, UserControllerService, WorkspaceControllerService, WorkspacesControllerService];

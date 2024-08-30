@@ -1,0 +1,25 @@
+{
+  "name": "@AhmedGodaa/com.atsapp.angular.network-layer",
+  "version": "1.0.0",
+  "description": "The version of the OpenAPI document: v0",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AhmedGodaa/ATSApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@angular/common": "^18.2.2",
+    "@angular/core": "^18.2.2"
+  }
+}

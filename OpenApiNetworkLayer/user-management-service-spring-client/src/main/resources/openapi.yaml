@@ -1,0 +1,1033 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost:8080
+paths:
+  /workspace/update:
+    put:
+      operationId: updateWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceEvent'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - workspace-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspace-controller
+  /admin/authorities/add:
+    put:
+      operationId: makeUserAdmin
+      parameters:
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - admin-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: admin-controller
+  /admin + /email/template/update:
+    put:
+      operationId: updateEmailTemplate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplate'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: OK
+      tags:
+      - email-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-controller
+  /workspace/removeMember:
+    post:
+      operationId: removeMemberFromWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveMemberFromWorkspaceEvent'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - workspace-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspace-controller
+  /workspace/create:
+    post:
+      operationId: createWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspaceEvent'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - workspace-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspace-controller
+  /workspace/addMember:
+    post:
+      operationId: addMemberToWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddMemberToWorkspaceEvent'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - workspace-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspace-controller
+  /auth/signup:
+    post:
+      operationId: signUp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - authentication-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: authentication-controller
+  /auth/signin:
+    post:
+      operationId: signIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignInRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResponseUserSignInResponse'
+          description: OK
+      tags:
+      - authentication-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: authentication-controller
+  /auth/password/reset:
+    post:
+      operationId: resetPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - password-reset-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: password-reset-controller
+  /auth/password/request-reset:
+    post:
+      operationId: requestPasswordReset
+      parameters:
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - password-reset-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: password-reset-controller
+  /admin + /email/template/create:
+    post:
+      operationId: createEmailTemplate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailTemplate'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: OK
+      tags:
+      - email-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-controller
+  /workspaces/members:
+    get:
+      operationId: getAllMembersOfWorkspace
+      parameters:
+      - explode: true
+        in: query
+        name: workspaceId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      tags:
+      - workspaces-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspaces-controller
+  /workspaces/getById:
+    get:
+      operationId: getWorkspaceById
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Workspace'
+          description: OK
+      tags:
+      - workspaces-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspaces-controller
+  /workspaces/all:
+    get:
+      operationId: getAllWorkspaces
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/Workspace'
+                type: array
+          description: OK
+      tags:
+      - workspaces-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspaces-controller
+  /user/getMyInfo:
+    get:
+      operationId: getMyInfo
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserInformation'
+          description: OK
+      tags:
+      - user-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: user-controller
+  /auth/verify-email:
+    get:
+      operationId: verifyEmail
+      parameters:
+      - explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      tags:
+      - email-verification-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-verification-controller
+  /auth/refresh-token:
+    get:
+      operationId: refreshAccessToken
+      parameters:
+      - explode: true
+        in: query
+        name: refresh-token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResponseRefreshTokenResponse'
+          description: OK
+      tags:
+      - authentication-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: authentication-controller
+  /admin/user/get:
+    get:
+      operationId: getUser
+      parameters:
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResponseUser'
+          description: OK
+      tags:
+      - admin-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: admin-controller
+  /admin/getAllUsers:
+    get:
+      operationId: getAllUsers
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MessageResponseListUser'
+          description: OK
+      tags:
+      - admin-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: admin-controller
+  /admin + /email/template/getById:
+    get:
+      operationId: getEmailTemplateById
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmailTemplate'
+          description: OK
+      tags:
+      - email-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-controller
+  /admin + /email/template/getAll:
+    get:
+      operationId: getAllEmailTemplates
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/EmailTemplate'
+                type: array
+          description: OK
+      tags:
+      - email-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-controller
+  /workspace/delete:
+    delete:
+      operationId: deleteWorkspace
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteWorkspaceEvent'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - workspace-controller
+      x-content-type: application/json
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: workspace-controller
+  /admin/user/delete:
+    delete:
+      operationId: deleteUser
+      parameters:
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - admin-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: admin-controller
+  /admin/authorities/remove:
+    delete:
+      operationId: removeUserAdmin
+      parameters:
+      - explode: true
+        in: query
+        name: email
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StringMessageResponse'
+          description: OK
+      tags:
+      - admin-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: admin-controller
+  /admin + /email/template/delete:
+    delete:
+      operationId: deleteEmailTemplate
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      tags:
+      - email-controller
+      x-accepts:
+      - '*/*'
+      x-tags:
+      - tag: email-controller
+components:
+  schemas:
+    UpdateWorkspaceEvent:
+      example:
+        name: name
+        description: description
+        id: id
+        ownerId: ownerId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - description
+      - id
+      - name
+      type: object
+    StringMessageResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    EmailTemplate:
+      example:
+        name: name
+        id: 0
+        content: content
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        content:
+          type: string
+      required:
+      - content
+      - name
+      type: object
+    RemoveMemberFromWorkspaceEvent:
+      example:
+        ownerId: ownerId
+        userId: userId
+        workspaceId: workspaceId
+      properties:
+        workspaceId:
+          type: string
+        userId:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - userId
+      - workspaceId
+      type: object
+    CreateWorkspaceEvent:
+      example:
+        name: name
+        description: description
+        id: id
+        ownerId: ownerId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - description
+      - name
+      type: object
+    AddMemberToWorkspaceEvent:
+      example:
+        ownerId: ownerId
+        userId: userId
+        workspaceId: workspaceId
+      properties:
+        workspaceId:
+          type: string
+        userId:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - userId
+      - workspaceId
+      type: object
+    CreateUserRequest:
+      example:
+        password: password
+        phoneNumber: phoneNumber
+        fullName: fullName
+        nationID: nationID
+        email: email
+      properties:
+        fullName:
+          maxLength: 100
+          minLength: 2
+          type: string
+        phoneNumber:
+          pattern: "^01[0125][0-9]{8}$"
+          type: string
+        password:
+          maxLength: 20
+          minLength: 6
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,}$"
+          type: string
+        email:
+          type: string
+        nationID:
+          pattern: "^[0-9]{14}$"
+          type: string
+      required:
+      - email
+      - fullName
+      - nationID
+      - password
+      - phoneNumber
+      type: object
+    UserSignInRequest:
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          type: string
+        password:
+          maxLength: 20
+          minLength: 6
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    MessageResponseUserSignInResponse:
+      example:
+        data:
+          fullName: fullName
+          id: 0
+          email: email
+          token: token
+          refreshToken: refreshToken
+        message: message
+      properties:
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/UserSignInResponse'
+      type: object
+    UserSignInResponse:
+      example:
+        fullName: fullName
+        id: 0
+        email: email
+        token: token
+        refreshToken: refreshToken
+      properties:
+        id:
+          format: int64
+          type: integer
+        email:
+          type: string
+        fullName:
+          type: string
+        token:
+          type: string
+        refreshToken:
+          type: string
+      type: object
+    ResetPasswordRequest:
+      example:
+        newPassword: newPassword
+        oobCode: oobCode
+        email: email
+      properties:
+        email:
+          type: string
+        oobCode:
+          type: string
+        newPassword:
+          maxLength: 20
+          minLength: 6
+          pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,}$"
+          type: string
+      required:
+      - email
+      - newPassword
+      - oobCode
+      type: object
+    Workspace:
+      example:
+        name: name
+        description: description
+        id: id
+        ownerId: ownerId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+      type: object
+    UserInformation:
+      example:
+        emailVerified: true
+        address: address
+        city: city
+        phone: phone
+        phoneVerified: true
+        fullName: fullName
+        nationID: nationID
+        id: 0
+        email: email
+        authorities:
+        - authorities
+        - authorities
+      properties:
+        id:
+          format: int64
+          type: integer
+        email:
+          type: string
+        fullName:
+          type: string
+        authorities:
+          items:
+            type: string
+          type: array
+        nationID:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        phone:
+          type: string
+        phoneVerified:
+          type: boolean
+        emailVerified:
+          type: boolean
+      type: object
+    MessageResponseRefreshTokenResponse:
+      example:
+        data:
+          newRefreshToken: newRefreshToken
+          newJwt: newJwt
+        message: message
+      properties:
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/RefreshTokenResponse'
+      type: object
+    RefreshTokenResponse:
+      example:
+        newRefreshToken: newRefreshToken
+        newJwt: newJwt
+      properties:
+        newJwt:
+          type: string
+        newRefreshToken:
+          type: string
+      type: object
+    MessageResponseUser:
+      example:
+        data:
+          address: address
+          city: city
+          lastModifiedDate: 2000-01-23T04:56:07.000+00:00
+          phoneVerified: true
+          fullName: fullName
+          nationID: nationID
+          authorities:
+          - authorities
+          - authorities
+          emailVerified: true
+          password: password
+          createdDate: 2000-01-23T04:56:07.000+00:00
+          phone: phone
+          id: 0
+          email: email
+        message: message
+      properties:
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/User'
+      type: object
+    User:
+      example:
+        address: address
+        city: city
+        lastModifiedDate: 2000-01-23T04:56:07.000+00:00
+        phoneVerified: true
+        fullName: fullName
+        nationID: nationID
+        authorities:
+        - authorities
+        - authorities
+        emailVerified: true
+        password: password
+        createdDate: 2000-01-23T04:56:07.000+00:00
+        phone: phone
+        id: 0
+        email: email
+      properties:
+        id:
+          format: int64
+          type: integer
+        email:
+          type: string
+        fullName:
+          type: string
+        authorities:
+          items:
+            type: string
+          type: array
+        password:
+          type: string
+          writeOnly: true
+        nationID:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        phone:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        lastModifiedDate:
+          format: date-time
+          type: string
+        phoneVerified:
+          type: boolean
+        emailVerified:
+          type: boolean
+      type: object
+    MessageResponseListUser:
+      example:
+        data:
+        - address: address
+          city: city
+          lastModifiedDate: 2000-01-23T04:56:07.000+00:00
+          phoneVerified: true
+          fullName: fullName
+          nationID: nationID
+          authorities:
+          - authorities
+          - authorities
+          emailVerified: true
+          password: password
+          createdDate: 2000-01-23T04:56:07.000+00:00
+          phone: phone
+          id: 0
+          email: email
+        - address: address
+          city: city
+          lastModifiedDate: 2000-01-23T04:56:07.000+00:00
+          phoneVerified: true
+          fullName: fullName
+          nationID: nationID
+          authorities:
+          - authorities
+          - authorities
+          emailVerified: true
+          password: password
+          createdDate: 2000-01-23T04:56:07.000+00:00
+          phone: phone
+          id: 0
+          email: email
+        message: message
+      properties:
+        message:
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      type: object
+    DeleteWorkspaceEvent:
+      example:
+        id: id
+        ownerId: ownerId
+      properties:
+        id:
+          type: string
+        ownerId:
+          type: string
+      required:
+      - id
+      type: object
