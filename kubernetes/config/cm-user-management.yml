@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-management-config-map
+  namespace: development
+data:
+  APP_URL: 'Enter your app url here'
