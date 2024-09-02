@@ -476,6 +476,55 @@ Each Service have 2 versions  `v1` and `v2` and each version have its own instan
   <img width="100%"  src="/assets/wso2_api_gateway_response.png">
 </p>
 
+### Kubernetes Api Gateway & Api Versioning with Ingress
+
+```yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: api-ingress
+   namespace: development
+   annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+   rules:
+      - host: localhost
+        http:
+           paths:
+              # User Management Service V1 + Api Gateway
+              - path: /v1/management
+                pathType: Prefix
+                backend:
+                   service:
+                      name: user-management-service-v1
+                      port:
+                         number: 8080
+              # Workspace Service V2 + Api Gateway
+              - path: /v2/management
+                pathType: Prefix
+                backend:
+                   service:
+                      name: user-management-service-v2
+                      port:
+                         number: 8080
+              # Workspace Service V1 + Api Gateway
+              - path: /v1/workspace
+                pathType: Prefix
+                backend:
+                   service:
+                      name: workspace-service-v1
+                      port:
+                         number: 8086
+              # Workspace Service V2 + Api Gateway
+              - path: /v2/workspace
+                pathType: Prefix
+                backend:
+                   service:
+                      name: workspace-service-v2
+                      port:
+                         number: 8086
+```
+
 ### PreSigned Urls & Upload File
 
 #### Problem Statement
@@ -516,7 +565,6 @@ we can avoid this by using pre-signed urls where the client will upload the file
 <p align="center">
   <img width="100%"  src="/assets/pre_signed_url.png">
 </p>
-
 
 ### Regular Upload
 

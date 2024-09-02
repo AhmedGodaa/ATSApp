@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-management-service
+  name: user-management-service-v2
   namespace: development
 spec:
   selector:
     app: user-management-app
     env: development
-    version: v1.0.1
+    version: v1.0.2
   ports:
     - protocol: "TCP"
       port: 8080

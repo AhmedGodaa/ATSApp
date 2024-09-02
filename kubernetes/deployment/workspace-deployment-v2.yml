@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+#  These labels are attached to the Deployment resource itself. They provide metadata that can be used to identify, organize, or filter the deployment
+metadata:
+  name: workspace-deployment
+  namespace: development
+  labels:
+    app: workspace-app
+    env: development
+    version: v1.0.2
+
+#  These labels are used to select the set of pods that the deployment will manage
+spec:
+  selector:
+    matchLabels:
+      app: workspace-app
+      env: development
+      version: v1.0.2
+  replicas: 2
+  #  These labels are applied to the pods that are created by this deployment. Every time the deployment creates a new pod (due to scaling or updating), these labels are automatically assigned to the pod
+  template:
+    metadata:
+      labels:
+        app: workspace-app
+        env: development
+        version: v1.0.2
+
+    spec:
+      containers:
+        - name: workspace-app
+          image: ahmedgodaa/ats-workspace-service:v1.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+

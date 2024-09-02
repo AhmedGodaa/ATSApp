@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: user-management-app
-          image: ahmedgodaa/ats-user-management-service:v1.0.7
+          image: ahmedgodaa/ats-user-management-service:v1.0.6
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
