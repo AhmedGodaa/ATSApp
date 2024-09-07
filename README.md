@@ -418,6 +418,8 @@ public class CreateUserRequest {
 Api Gateway and api versioning using **WSO2**;
 
 ### WSO2
+![Untitled-2024-09-07-1227](https://github.com/user-attachments/assets/15996209-7a24-4eef-9190-29ebb7d7e6c6)
+
 
 #### Api Resources
 
