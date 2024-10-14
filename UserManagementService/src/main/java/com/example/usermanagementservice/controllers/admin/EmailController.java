@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("${api.admin.url} + ${api.admin.email.template.url}")
+@RequestMapping("${api.version}/email/template")
 public class EmailController {
 
     private final EmailTemplateService emailTemplateService;

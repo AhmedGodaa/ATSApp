@@ -45,8 +45,9 @@ spec:
                   name: user-management-secret
                   key: MAIL_PASSWORD
 
-            - name: APP_URL
+            - name: API_VERSION
               valueFrom:
                 configMapKeyRef:
-                  name: user-management-config-map
-                  key: APP_URL
+                  name: user-management-config-map-v1
+                  key: API_VERSION
+

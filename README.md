@@ -501,7 +501,7 @@ spec:
                       name: user-management-service-v1
                       port:
                          number: 8080
-              # Workspace Service V2 + Api Gateway
+              # User Management Service V2 + Api Gateway
               - path: /v2/management
                 pathType: Prefix
                 backend:
